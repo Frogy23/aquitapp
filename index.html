@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aquitapp — Móvil</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="stylesmain.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <aside id="drawer" class="drawer">
+    <nav class="drawer-nav">
+      <a href="index.html" class="active">Inicio</a>
+      <a href="index.html#ver-mas">Ver más</a>
+      <a href="que-es.html">¿Qué es AQUITAPP?</a>
+      <a href="beneficios.html">Beneficios</a>
+      <a href="index.html#categorias">Categorías</a>
+      <a href="como-funciona.html">¿Cómo funciona?</a>
+    </nav>
+  </aside>
+
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn" aria-label="Abrir menú" aria-controls="drawer" aria-expanded="false">
+      <span class="burger"></span>
+      <span class="burger"></span>
+      <span class="burger"></span>
+    </button>
+  </header>
+
+  <main>
+    <section id="inicio" class="section hero">
+      <div class="logo-wrap">
+        <img class="img-slot logo" src="assets/logo-aquitapp.png" alt="Logo de Aquitapp (reemplazar aquí)" />
+      </div>
+      <h1 class="brand">Aquitapp</h1>
+      <p class="subtitle">App para Jóvenes<br/>Emprendedores</p>
+      <a class="cta" href="#ver-mas">VER MÁS</a>
+      <img class="img-slot phone-shot" src="img/telefono.svg" alt="Captura o mockup de la app (reemplazar aquí)" />
+      <div class="halo halo-left"></div>
+      <div class="halo halo-right"></div>
+    </section>
+
+    <section id="ver-mas" class="section banner">
+      <img class="img-slot bg" src="img/back-vermas.svg" alt="Fondo difuminado de Ver más (reemplazar aquí)" />
+      <div class="banner-inner">
+        <h2 class="banner-title">Conectamos el talento joven<br/>con su comunidad</h2>
+        <p class="banner-sub">
+          AQUITAPP te ayuda a encontrar y apoyar micro y pequeños negocios
+          de tu zona. Súmate para darle visibilidad a tu emprendimiento.
+        </p>
+      </div>
+    </section>
+
+    <!--CATEGORÍAS-->
+    <section id="categorias" class="section categories">
+      <h2 class="cats-title">Explora por <span class="accent">Categorías</span></h2>
+      <div class="cat-grid">
+        <a class="cat-card" href="educacion.html">
+          <div class="cat-illus"><img class="img-slot" src="assets/educacion.svg" alt="Ilustración Educación (reemplazar)" /></div>
+          <h3>Educación</h3>
+          <p>Tutorías, cursos, talleres y academias.</p>
+        </a>
+        <a class="cat-card" href="productos.html">
+          <div class="cat-illus"><img class="img-slot" src="assets/productos.svg" alt="Ilustración Productos (reemplazar)" /></div>
+          <h3>Productos</h3>
+          <p>Alimentos, artesanías, moda y más.</p>
+        </a>
+        <a class="cat-card" href="servicios.html">
+          <div class="cat-illus"><img class="img-slot" src="assets/servicios.svg" alt="Ilustración Servicios (reemplazar)" /></div>
+          <h3>Servicios</h3>
+          <p>Tecnología, estética, mantenimiento, etc.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

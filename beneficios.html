@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Aquitapp — Móvil</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="stylesmain.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <aside id="drawer" class="drawer">
+            <nav class="drawer-nav">
+                <a href="index.html" class="active">Inicio</a>
+                <a href="index.html#ver-mas">Ver más</a>
+                <a href="que-es.html">¿Qué es AQUITAPP?</a>
+                <a href="beneficios.html">Beneficios</a>
+                <a href="index.html#categorias">Categorías</a>
+                <a href="como-funciona.html">¿Cómo funciona?</a>
+            </nav>
+        </aside>
+
+        <header class="topbar">
+            <button id="menuBtn" class="icon-btn" aria-label="Abrir menú" aria-controls="drawer" aria-expanded="false">
+            <span class="burger"></span>
+            <span class="burger"></span>
+            <span class="burger"></span>
+            </button>
+        </header>
+
+        <main>
+            <!--BENEFICIOS-->
+            <!--EMPRENDEDORES-->
+            <section id="beneficios" class="section benefits">
+            <h2 class="benefits-title"><span>BENEFICIOS</span><small>Para Emprendedores</small></h2>
+            <ul class="benefits-list">
+                <li><span class="dot"></span><strong>Mayor Visibilidad:</strong> Muestra tu negocio en un mapa interactivo accesible para toda la comunidad.</li>
+                <li><span class="dot"></span><strong>Clientes Cercanos:</strong> Conecta con personas que buscan exactamente lo que ofreces.</li>
+                <li><span class="dot"></span><strong>Promoción Fácil:</strong> Publica tus productos, servicios y promociones sin complicaciones.</li>
+                <li><span class="dot"></span><strong>Crecimiento Real:</strong> Aumenta tus ventas y fortalece tus habilidades como emprendedor.</li>
+            </ul>
+            <img class="img-slot benefits-photo" src="img/emprendedores.svg" alt="Imagen ilustrativa de beneficios (reemplazar aquí)" />
+            </section>
+            <!--CONSUMIDORES-->
+            <!--Consumidores-->
+            <section id="beneficios-consumidores" class="section benefits consumers">
+            <h2 class="benefits-title"><span>BENEFICIOS</span><small>Para Consumidores</small></h2>
+            <ul class="benefits-list">
+                <li><span class="dot"></span><strong>Encuentra Negocios Locales:</strong> Descubre productos y servicios cerca de ti.</li>
+                <li><span class="dot"></span><strong>Apoyo al Talento Joven:</strong> Contribuye al crecimiento de emprendedores de tu comunidad.</li>
+                <li><span class="dot"></span><strong>Opciones Únicas:</strong> Accede a ofertas y creaciones que no encontrarás en grandes cadenas.</li>
+                <li><span class="dot"></span><strong>Economía Solidaria:</strong> Fomenta un consumo consciente que beneficia a todos.</li>
+            </ul>
+            <img class="img-slot benefits-photo" src="img/consumidores.svg" alt="Imagen ilustrativa de beneficios (reemplazar aquí)" />
+            </section>
+        </main>
+        <script src="script.js" async defer></script>
+    </body>
+</html>

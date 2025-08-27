@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Productos — Aquitapp</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn" aria-label="Abrir menú">
+      <span class="burger"></span><span class="burger"></span><span class="burger"></span>
+    </button>
+  </header>
+
+  <main class="page">
+    <div class="head">
+      <a class="back" href="index.html#categorias">Volver</a>
+      <h1>Productos</h1>
+    </div>
+
+    <section class="list">
+      
+        <article class="card">
+          <h3>Panadería Jovial</h3>
+          <p>Pan artesanal y postres por encargo.</p>
+          <div class="tags"><span class="tag">pan</span><span class="tag">repostería</span><span class="tag">delivery</span></div>
+        </article>
+        
+
+        <article class="card">
+          <h3>Artesanías Ñeque</h3>
+          <p>Accesorios hechos a mano con materiales locales.</p>
+          <div class="tags"><span class="tag">hecho a mano</span><span class="tag">bisutería</span><span class="tag">regalos</span></div>
+        </article>
+        
+
+        <article class="card">
+          <h3>EcoBotellas</h3>
+          <p>Termos y botellas reusables personalizadas.</p>
+          <div class="tags"><span class="tag">sostenible</span><span class="tag">personalizado</span></div>
+        </article>
+        
+
+        <article class="card">
+          <h3>StreetWear 507</h3>
+          <p>Ropa urbana de edición limitada.</p>
+          <div class="tags"><span class="tag">moda</span><span class="tag">urbano</span></div>
+        </article>
+        
+
+        <article class="card">
+          <h3>Green Bites</h3>
+          <p>Snacks saludables y veganos.</p>
+          <div class="tags"><span class="tag">veggie</span><span class="tag">snacks</span></div>
+        </article>
+        
+    </section>
+
+    <section class="map-ui">
+      <div class="row">
+        <input id="query" type="text" placeholder="Buscar en Google Maps..." value="Productos cerca de mí" />
+      </div>
+      <div class="row">
+        <button id="geoBtn">Usar mi ubicación</button>
+        <button id="searchBtn">Buscar en el mapa</button>
+      </div>
+      <iframe id="map" class="mapbox" src="https://www.google.com/maps?q=Productos%20near%20me&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+  </main>
+
+  <script>
+        async function getCurrentCoords() {
+      try {
+        if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
+          const { Geolocation } = window.Capacitor.Plugins;
+          await Geolocation.requestPermissions();
+          const pos = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
+          return { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        } else {
+          const pos = await new Promise((resolve, reject) => {
+            if (!navigator.geolocation) return reject(new Error('Geolocalización no disponible'));
+            navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
+          });
+          return { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        }
+      } catch (err) {
+        throw err;
+      }
+    }
+
+    function updateMapIframe(queryInputId, iframeId, coords) {
+      const qInput = document.getElementById(queryInputId);
+      const map = document.getElementById(iframeId);
+      const q = encodeURIComponent((qInput?.value || 'emprendimientos') + '');
+      if (coords) {
+        map.src = `https://www.google.com/maps?q=${q}%20near%20${coords.lat},${coords.lng}&output=embed`;
+      } else {
+        map.src = `https://www.google.com/maps?q=${q}&output=embed`;
+      }
+    }
+
+    function wireMapUI({ queryInputId = 'query', iframeId = 'map', geoBtnId = 'geoBtn', searchBtnId = 'searchBtn' } = {}) {
+      const qInput = document.getElementById(queryInputId);
+      const geoBtn = document.getElementById(geoBtnId);
+      const searchBtn = document.getElementById(searchBtnId);
+
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => updateMapIframe(queryInputId, iframeId));
+      }
+      if (geoBtn) {
+        geoBtn.addEventListener('click', async () => {
+          try {
+            const coords = await getCurrentCoords();
+            updateMapIframe(queryInputId, iframeId, coords);
+          } catch (err) {
+            alert('No se pudo obtener tu ubicación: ' + (err.message || ''));
+          }
+        });
+      }
+    }
+
+    // Inicia los eventos
+    wireMapUI();
+  </script>
+  <script src="geo-adapter.js" async defer></script>
+  <script src="script.js" async defer></script>
+</body>
+</html>

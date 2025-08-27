@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Educación — Aquitapp</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar">
+    <button id="menuBtn" class="icon-btn" aria-label="Abrir menú">
+      <span class="burger"></span><span class="burger"></span><span class="burger"></span>
+    </button>
+  </header>
+
+  <main class="page">
+    <div class="head">
+      <a class="back" href="index.html#categorias">Volver</a>
+      <h1>Educación</h1>
+    </div>
+
+    <section class="list">
+      
+        <article class="card">
+          <h3>Mentoría STEM Jóven</h3>
+          <p>Tutorías de matemáticas, física y robótica para bachilleres.</p>
+          <div class="tags"><span class="tag">tutorías</span><span class="tag">robótica</span><span class="tag">pre-exámenes</span></div>
+        </article>
+        
+
+        <article class="card">
+          <h3>Academia de Idiomas Barrio Norte</h3>
+          <p>Cursos intensivos de inglés y portugués para jóvenes emprendedores.</p>
+          <div class="tags"><span class="tag">inglés</span><span class="tag">portugués</span><span class="tag">certificación</span></div>
+        </article>
+        
+
+        <article class="card">
+          <h3>Talleres Creativos La Esquina</h3>
+          <p>Diseño gráfico básico, branding y redes sociales.</p>
+          <div class="tags"><span class="tag">diseño</span><span class="tag">branding</span><span class="tag">marketing</span></div>
+        </article>
+        
+
+        <article class="card">
+          <h3>CodeLab Comunitario</h3>
+          <p>Introducción a programación web con proyectos reales.</p>
+          <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </article>
+        
+
+        <article class="card">
+          <h3>Música & Producción 101</h3>
+          <p>Producción musical desde cero con herramientas accesibles.</p>
+          <div class="tags"><span class="tag">DAW</span><span class="tag">mezcla</span><span class="tag">beatmaking</span></div>
+        </article>
+        
+    </section>
+
+    <section class="map-ui">
+      <div class="row">
+        <input id="query" type="text" placeholder="Buscar en Google Maps..." value="Educación cerca de mí" />
+      </div>
+      <div class="row">
+        <button id="geoBtn">Usar mi ubicación</button>
+        <button id="searchBtn">Buscar en el mapa</button>
+      </div>
+      <iframe id="map" class="mapbox" src="https://www.google.com/maps?q=Educación%20near%20me&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+  </main>
+
+  <script>
+      async function getCurrentCoords() {
+      try {
+        if (window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()) {
+          const { Geolocation } = window.Capacitor.Plugins;
+          await Geolocation.requestPermissions();
+          const pos = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
+          return { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        } else {
+          const pos = await new Promise((resolve, reject) => {
+            if (!navigator.geolocation) return reject(new Error('Geolocalización no disponible'));
+            navigator.geolocation.getCurrentPosition(resolve, reject, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
+          });
+          return { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        }
+      } catch (err) {
+        throw err;
+      }
+    }
+
+    function updateMapIframe(queryInputId, iframeId, coords) {
+      const qInput = document.getElementById(queryInputId);
+      const map = document.getElementById(iframeId);
+      const q = encodeURIComponent((qInput?.value || 'emprendimientos') + '');
+      if (coords) {
+        map.src = `https://www.google.com/maps?q=${q}%20near%20${coords.lat},${coords.lng}&output=embed`;
+      } else {
+        map.src = `https://www.google.com/maps?q=${q}&output=embed`;
+      }
+    }
+
+    function wireMapUI({ queryInputId = 'query', iframeId = 'map', geoBtnId = 'geoBtn', searchBtnId = 'searchBtn' } = {}) {
+      const qInput = document.getElementById(queryInputId);
+      const geoBtn = document.getElementById(geoBtnId);
+      const searchBtn = document.getElementById(searchBtnId);
+
+      if (searchBtn) {
+        searchBtn.addEventListener('click', () => updateMapIframe(queryInputId, iframeId));
+      }
+      if (geoBtn) {
+        geoBtn.addEventListener('click', async () => {
+          try {
+            const coords = await getCurrentCoords();
+            updateMapIframe(queryInputId, iframeId, coords);
+          } catch (err) {
+            alert('No se pudo obtener tu ubicación: ' + (err.message || ''));
+          }
+        });
+      }
+    }
+
+    // Inicia los eventos
+    wireMapUI();
+  </script>
+  <script src="geo-adapter.js" async defer></script>
+  <script src="script.js" async defer></script>
+</body>
+</html>

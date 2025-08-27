@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Aquitapp — Móvil</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="stylesmain.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <aside id="drawer" class="drawer">
+            <nav class="drawer-nav">
+            <a href="index.html" class="active">Inicio</a>
+            <a href="index.html#ver-mas">Ver más</a>
+            <a href="que-es.html">¿Qué es AQUITAPP?</a>
+            <a href="beneficios.html">Beneficios</a>
+            <a href="index.html#categorias">Categorías</a>
+            <a href="como-funciona.html">¿Cómo funciona?</a>
+            </nav>
+        </aside>
+
+        <header class="topbar">
+            <button id="menuBtn" class="icon-btn" aria-label="Abrir menú" aria-controls="drawer" aria-expanded="false">
+            <span class="burger"></span>
+            <span class="burger"></span>
+            <span class="burger"></span>
+            </button>
+        </header>
+
+        <main>
+            <!--COMO FUNCIONA-->
+            <section id="como-funciona" class="section howto">
+            <h2 class="howto-title">¿Cómo funciona?</h2>
+            <div class="howto-icons">
+                <img class="img-slot howto-icon" src="assets/usuario.svg" alt="Ícono de registro (reemplazar aquí)" />
+                <img class="img-slot howto-icon" src="assets/pin.svg" alt="Ícono de ubicar negocio (reemplazar aquí)" />
+                <img class="img-slot howto-icon" src="assets/share.svg" alt="Ícono de compartir lo que ofreces (reemplazar aquí)" />
+            </div>
+            <div class="steps">
+                <div class="step">
+                <h3>Regístrate</h3>
+                <p>Crea tu cuenta como emprendedor o consumidor en pocos pasos.</p>
+                </div>
+                <div class="step">
+                <h3>Ubica tu Negocio</h3>
+                <p>Si eres emprendedor, agrega tu emprendimiento y colócalo en nuestro <strong>mapa interactivo</strong>.</p>
+                </div>
+                <div class="step">
+                <h3>Comparte lo que Ofreces</h3>
+                <p>Publica fotos, descripciones y promociones para que la comunidad conozca tus productos o servicios.</p>
+                </div>
+            </div>
+            </section>
+        </main>
+        <script src="script.js" async defer></script>
+    </body>
+</html>
